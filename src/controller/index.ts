@@ -31,7 +31,10 @@ class LogsFast implements I.LogsFast {
         console.log(
           "-------------------------",
           "\n",
-          chalk.black.bgHex("#f14a4a").bold(this.generateLog(params?.type)),
+          chalk
+            .hex("#fff")
+            .bgHex("#f14a4a")
+            .bold(this.generateLog(params?.type)),
           "\n",
           params?.message,
           "\n",
@@ -42,7 +45,10 @@ class LogsFast implements I.LogsFast {
         console.log(
           "-------------------------",
           "\n",
-          chalk.white.bgHex("#2f8fe9").bold(this.generateLog(params?.type)),
+          chalk
+            .hex("#fff")
+            .bgHex("#2f8fe9")
+            .bold(this.generateLog(params?.type)),
           "\n",
           params?.message,
           "\n",
@@ -53,7 +59,7 @@ class LogsFast implements I.LogsFast {
         console.log(
           "-------------------------",
           "\n",
-          chalk.black.bgBlue.bold(this.generateLog(params?.type)),
+          chalk.hex("#fff").bgBlue.bold(this.generateLog(params?.type)),
           "\n",
           params?.message,
           "\n",
