@@ -1,0 +1,26 @@
+{
+  "name": "logs-frontend",
+  "version": "1.0.0",
+  "description": "Fast tool for logs in frontend",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify": "yarn compile && uglifyjs -c -m -o dist/index.js dist/index.js && uglifyjs -c -m -o dist/controller/index.js dist/controller/index.js",
+    "compile": "rm -rf dist/lib && tsc"
+  },
+  "author": "Juliano Alves",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "@types/cli-color": "^2.0.2",
+    "@types/uglify-js": "^3.17.1",
+    "parcel": "^2.8.3",
+    "typescript": "^4.9.5",
+    "uglify-js": "^3.17.4"
+  }
+}
