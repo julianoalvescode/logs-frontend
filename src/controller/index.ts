@@ -42,7 +42,7 @@ class LogsFast implements I.LogsFast {
   public downloadLog(format: I.FormatDownload): void {
     const logs = localStorage.getItem("logs");
     if (logs) {
-      const logsArray = JSON.parse(logs);
+      const logsArray = JSON.parse(this.createStringFromJson(logs));
 
       if (format === "text") {
         const blob = new Blob(logsArray, { type: "text/plain" });
@@ -53,8 +53,8 @@ class LogsFast implements I.LogsFast {
         link.setAttribute("download", "logs.txt");
         link.click();
       } else if (format === "json") {
-        const blob = new Blob([JSON.stringify(logsArray)], {
-          type: "text/plain",
+        const blob = new Blob(logsArray, {
+          type: "application/json",
         });
         const url = URL.createObjectURL(blob);
 
@@ -63,7 +63,7 @@ class LogsFast implements I.LogsFast {
         link.setAttribute("download", "logs.json");
         link.click();
       } else if (format === "pdf") {
-        const blob = new Blob([JSON.stringify(logsArray)], {
+        const blob = new Blob([logsArray], {
           type: "application/pdf",
         });
         const url = URL.createObjectURL(blob);
@@ -74,6 +74,16 @@ class LogsFast implements I.LogsFast {
         link.click();
       }
     }
+  }
+
+  public createStringFromJson(json: string): string {
+    const jsonParse = JSON.parse(json);
+    let string = "";
+    jsonParse.forEach((item: string) => {
+      string += `${item}\n`;
+    });
+
+    return string;
   }
 }
 
