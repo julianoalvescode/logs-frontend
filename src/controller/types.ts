@@ -11,11 +11,12 @@ export enum TypeMessage {
 export type Log = {
   message: string;
   type: Type;
-  save?: {
-    isActivated: boolean;
-    format: "text" | "json";
+  save?: boolean;
+  download?: {
+    format: FormatDownload;
   };
-  download?: boolean;
 };
+
+export type FormatDownload = "text" | "json" | "pdf";
 
 export type Type = "warn" | "error" | "info";

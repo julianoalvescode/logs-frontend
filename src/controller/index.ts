@@ -10,10 +10,9 @@ class LogsFast implements I.LogsFast {
   }
 
   public log(params: I.Log): void {
-    const isSave = params?.save?.isActivated;
+    const isSave = params?.save;
 
-    if (params?.download)
-      this.getLogLocalStorage(params?.save?.format || "text");
+    if (params?.download) this.downloadLog(params?.download?.format || "text");
     if (isSave) this.saveLogLocalStorage(params);
 
     console.log(
@@ -28,24 +27,19 @@ class LogsFast implements I.LogsFast {
   }
 
   public saveLogLocalStorage(params: I.Log): void {
-    const isSave = params?.save?.isActivated;
+    const log = `${this.generateLog(params?.type)}: ${params?.message}`;
 
-    if (isSave) {
-      const log = `${this.generateLog(params?.type)}: ${params?.message}`;
-
-      const logs = localStorage.getItem("logs");
-      if (logs) {
-        const logsArray = JSON.parse(logs);
-        logsArray.push(log);
-        localStorage.setItem("logs", JSON.stringify(logsArray));
-      } else {
-        localStorage.setItem("logs", JSON.stringify([log]));
-      }
+    const logs = localStorage.getItem("logs");
+    if (logs) {
+      const logsArray = JSON.parse(logs);
+      logsArray.push(log);
+      localStorage.setItem("logs", JSON.stringify(logsArray));
+    } else {
+      localStorage.setItem("logs", JSON.stringify([log]));
     }
   }
 
-  // Get logs from local storage and save in file (text or json)
-  public getLogLocalStorage(format: "text" | "json"): void {
+  public downloadLog(format: I.FormatDownload): void {
     const logs = localStorage.getItem("logs");
     if (logs) {
       const logsArray = JSON.parse(logs);
@@ -56,7 +50,7 @@ class LogsFast implements I.LogsFast {
 
         const link = document.createElement("a");
         link.setAttribute("href", url);
-        link.setAttribute("download", "log.txt");
+        link.setAttribute("download", "logs.txt");
         link.click();
       } else if (format === "json") {
         const blob = new Blob([JSON.stringify(logsArray)], {
@@ -66,7 +60,17 @@ class LogsFast implements I.LogsFast {
 
         const link = document.createElement("a");
         link.setAttribute("href", url);
-        link.setAttribute("download", "log.json");
+        link.setAttribute("download", "logs.json");
+        link.click();
+      } else if (format === "pdf") {
+        const blob = new Blob([JSON.stringify(logsArray)], {
+          type: "application/pdf",
+        });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", "logs.pdf");
         link.click();
       }
     }
