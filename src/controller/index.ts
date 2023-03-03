@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import { format } from "date-fns";
 
 import * as I from "./types";
@@ -10,17 +9,18 @@ class LogsFast implements I.LogsFast {
     return I.TypeMessage[type] + log;
   }
 
-  public async log(params: I.Log): Promise<void> {
+  public log(params: I.Log): void {
     const isSave = params?.save?.isActivated;
 
     if (isSave) this.saveLog(params?.message, params?.save?.format || "json");
 
     switch (params?.type) {
       case "warn":
-        await console.log(
+        console.log(
           "-------------------------",
           "\n",
-          chalk.black.bgHex("#ef9a4f").bold(this.generateLog(params?.type)),
+          `%c${this.generateLog(params?.type)}`,
+          "background: #f7b500; color: #fff; font-weight: bold;",
           "\n",
           params?.message,
           "\n",
@@ -28,13 +28,11 @@ class LogsFast implements I.LogsFast {
         );
         break;
       case "error":
-        await console.log(
+        console.log(
           "-------------------------",
           "\n",
-          chalk
-            .hex("#fff")
-            .bgHex("#f14a4a")
-            .bold(this.generateLog(params?.type)),
+          `%c${this.generateLog(params?.type)}`,
+          "background: #f50000; color: #fff; font-weight: bold;",
           "\n",
           params?.message,
           "\n",
@@ -42,13 +40,11 @@ class LogsFast implements I.LogsFast {
         );
         break;
       case "info":
-        await console.log(
+        console.log(
           "-------------------------",
           "\n",
-          chalk
-            .hex("#fff")
-            .bgHex("#2f8fe9")
-            .bold(this.generateLog(params?.type)),
+          `%c${this.generateLog(params?.type)}`,
+          "background: #00b0ff; color: #fff; font-weight: bold;",
           "\n",
           params?.message,
           "\n",
@@ -56,10 +52,11 @@ class LogsFast implements I.LogsFast {
         );
         break;
       default:
-        await console.log(
+        console.log(
           "-------------------------",
           "\n",
-          chalk.hex("#fff").bgBlue.bold(this.generateLog(params?.type)),
+          `%c${this.generateLog(params?.type)}`,
+          "background: #00b0ff; color: #fff; font-weight: bold;",
           "\n",
           params?.message,
           "\n",

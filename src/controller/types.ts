@@ -1,5 +1,5 @@
 export interface LogsFast {
-  log(params: Log): Promise<void>;
+  log(params: Log): void;
 }
 
 export enum TypeMessage {
