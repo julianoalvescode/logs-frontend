@@ -53,7 +53,7 @@ class LogsFast implements I.LogsFast {
         link.setAttribute("download", "logs.txt");
         link.click();
       } else if (format === "json") {
-        const blob = new Blob(logsArray, {
+        const blob = new Blob([JSON.stringify(logsArray)], {
           type: "application/json",
         });
         const url = URL.createObjectURL(blob);
@@ -63,7 +63,7 @@ class LogsFast implements I.LogsFast {
         link.setAttribute("download", "logs.json");
         link.click();
       } else if (format === "pdf") {
-        const blob = new Blob([logsArray], {
+        const blob = new Blob([JSON.stringify(logsArray)], {
           type: "application/pdf",
         });
         const url = URL.createObjectURL(blob);
