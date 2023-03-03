@@ -12,54 +12,21 @@ class LogsFast implements I.LogsFast {
   public log(params: I.Log): void {
     const isSave = params?.save?.isActivated;
 
-    if (isSave) this.saveLog(params?.message, params?.save?.format || "json");
+    if (isSave)
+      this.saveLog(
+        `${this.generateLog(params?.type)} \n params?.message`,
+        params?.save?.format || "json"
+      );
 
-    switch (params?.type) {
-      case "warn":
-        console.log(
-          "/-------------------------/",
-          "\n",
-          this.generateLog(params?.type),
-          "\n",
-          params?.message,
-          "\n",
-          "<------------------------->"
-        );
-        break;
-      case "error":
-        console.log(
-          "/-------------------------/",
-          "\n",
-          this.generateLog(params?.type),
-          "\n",
-          params?.message,
-          "\n",
-          "<------------------------->"
-        );
-        break;
-      case "info":
-        console.log(
-          "/-------------------------/",
-          "\n",
-          this.generateLog(params?.type),
-          "\n",
-          params?.message,
-          "\n",
-          "<------------------------->"
-        );
-        break;
-      default:
-        console.log(
-          "/-------------------------/",
-          "\n",
-          this.generateLog(params?.type),
-          "\n",
-          params?.message,
-          "\n",
-          "<------------------------->"
-        );
-        break;
-    }
+    console.log(
+      "/-------------------------/",
+      "\n",
+      this.generateLog(params?.type),
+      "\n",
+      params?.message,
+      "\n",
+      "<------------------------->"
+    );
   }
 
   private saveLog(log: string, format: "text" | "json"): void {
