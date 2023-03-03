@@ -4,20 +4,26 @@ import { format } from "date-fns";
 import * as I from "./types";
 
 class LogsFast implements I.LogsFast {
+  static Log: any;
+
+  constructor() {
+    this.Log = console.log;
+  }
+
   private generateLog(type: I.Type) {
     const log = `: ${format(new Date(), "dd/MM/yyyy HH:mm:ss")}`;
 
     return I.TypeMessage[type] + log;
   }
 
-  public log(params: I.Log): void {
+  public async log(params: I.Log): Promise<void> {
     const isSave = params?.save?.isActivated;
 
     if (isSave) this.saveLog(params?.message, params?.save?.format || "json");
 
     switch (params?.type) {
       case "warn":
-        console.log(
+        await console.log(
           "-------------------------",
           "\n",
           chalk.black.bgHex("#ef9a4f").bold(this.generateLog(params?.type)),
@@ -28,7 +34,7 @@ class LogsFast implements I.LogsFast {
         );
         break;
       case "error":
-        console.log(
+        await console.log(
           "-------------------------",
           "\n",
           chalk
@@ -42,7 +48,7 @@ class LogsFast implements I.LogsFast {
         );
         break;
       case "info":
-        console.log(
+        await console.log(
           "-------------------------",
           "\n",
           chalk
@@ -56,7 +62,7 @@ class LogsFast implements I.LogsFast {
         );
         break;
       default:
-        console.log(
+        await console.log(
           "-------------------------",
           "\n",
           chalk.hex("#fff").bgBlue.bold(this.generateLog(params?.type)),

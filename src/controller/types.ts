@@ -1,11 +1,12 @@
 export interface LogsFast {
-  log(params: Log): void;
+  Log: any;
+  log(params: Log): Promise<void>;
 }
 
 export enum TypeMessage {
-  "warn" = "⚠️ WARNING",
-  "error" = "🔥 ERROR",
-  "info" = "✅ INFO",
+  "warn" = "WARNING",
+  "error" = "ERROR",
+  "info" = "INFO",
 }
 
 export type Log = {
