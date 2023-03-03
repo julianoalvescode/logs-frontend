@@ -16,7 +16,7 @@ class LogsFast implements I.LogsFast {
     if (isSave) this.saveLogLocalStorage(params);
 
     console.log(
-      "/-------------------------/",
+      "<------------------------->",
       "\n",
       this.generateLog(params?.type),
       "\n",
@@ -45,7 +45,14 @@ class LogsFast implements I.LogsFast {
       const logsArray = JSON.parse(logs);
 
       if (format === "text") {
-        const blob = new Blob(logsArray, { type: "text/plain" });
+        const item = localStorage.getItem("logs");
+        if (!item) {
+          console.error(`Item logs not found in localStorage.`);
+          return;
+        }
+
+        const text = item?.replace(/,/g, "\n");
+        const blob = new Blob([text], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
 
         const link = document.createElement("a");
@@ -54,7 +61,7 @@ class LogsFast implements I.LogsFast {
         link.click();
       } else if (format === "json") {
         const blob = new Blob([JSON.stringify(logsArray)], {
-          type: "application/json",
+          type: "text/plain",
         });
         const url = URL.createObjectURL(blob);
 
@@ -74,16 +81,6 @@ class LogsFast implements I.LogsFast {
         link.click();
       }
     }
-  }
-
-  private createStringFromJson(json: string): string {
-    const jsonParse = JSON.parse(json);
-    let string = "";
-    jsonParse.forEach((item: string) => {
-      string += `${item}\n`;
-    });
-
-    return string;
   }
 }
 
