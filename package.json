@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "minify": "yarn compile && uglifyjs -c -m -o dist/index.js dist/index.js && uglifyjs -c -m -o dist/controller/index.js dist/controller/index.js",
     "compile": "rm -rf dist/lib && tsc",
-    "pusblish": "yarn minify && npm publish"
+    "publish": "yarn minify && npm publish"
   },
   "author": "Juliano Alves",
   "license": "ISC",
