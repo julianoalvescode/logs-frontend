@@ -12,7 +12,6 @@ class LogsFast implements I.LogsFast {
   public log(params: I.Log): void {
     const isSave = params?.save;
 
-    if (params?.download) this.downloadLog(params?.download?.format || "text");
     if (isSave) this.saveLogLocalStorage(params);
 
     console.log(

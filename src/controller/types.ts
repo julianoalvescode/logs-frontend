@@ -12,9 +12,6 @@ export type Log = {
   message: string;
   type: Type;
   save?: boolean;
-  download?: {
-    format: FormatDownload;
-  };
 };
 
 export type FormatDownload = "text" | "json" | "pdf";
