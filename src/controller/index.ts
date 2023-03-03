@@ -42,7 +42,7 @@ class LogsFast implements I.LogsFast {
   public downloadLog(format: I.FormatDownload): void {
     const logs = localStorage.getItem("logs");
     if (logs) {
-      const logsArray = JSON.parse(this.createStringFromJson(logs));
+      const logsArray = JSON.parse(logs);
 
       if (format === "text") {
         const blob = new Blob(logsArray, { type: "text/plain" });
@@ -76,7 +76,7 @@ class LogsFast implements I.LogsFast {
     }
   }
 
-  public createStringFromJson(json: string): string {
+  private createStringFromJson(json: string): string {
     const jsonParse = JSON.parse(json);
     let string = "";
     jsonParse.forEach((item: string) => {
