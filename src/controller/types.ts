@@ -1,5 +1,4 @@
 export interface LogsFast {
-  Log: any;
   log(params: Log): Promise<void>;
 }
 

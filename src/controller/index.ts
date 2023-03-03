@@ -4,12 +4,6 @@ import { format } from "date-fns";
 import * as I from "./types";
 
 class LogsFast implements I.LogsFast {
-  static Log: any;
-
-  constructor() {
-    this.Log = console.log;
-  }
-
   private generateLog(type: I.Type) {
     const log = `: ${format(new Date(), "dd/MM/yyyy HH:mm:ss")}`;
 
