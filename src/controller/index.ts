@@ -12,6 +12,8 @@ class LogsFast implements I.LogsFast {
   public log(params: I.Log): void {
     const isSave = params?.save?.isActivated;
 
+    if (params?.download)
+      this.getLogLocalStorage(params?.save?.format || "text");
     if (isSave) this.saveLogLocalStorage(params);
 
     console.log(
@@ -24,33 +26,6 @@ class LogsFast implements I.LogsFast {
       "<------------------------->"
     );
   }
-
-  // private saveLog(log: string, format: "text" | "json"): void {
-  //   try {
-  //     if (!log) throw new Error("Log is empty");
-  //     if (format === "text") {
-  //       const blob = new Blob([log], { type: "text/plain" });
-  //       const url = URL.createObjectURL(blob);
-
-  //       const link = document.createElement("a");
-  //       link.setAttribute("href", url);
-  //       link.setAttribute("download", "log.txt");
-  //       link.click();
-  //     } else if (format === "json") {
-  //       const blob = new Blob([JSON.stringify(log)], { type: "text/plain" });
-  //       const url = URL.createObjectURL(blob);
-
-  //       const link = document.createElement("a");
-  //       link.setAttribute("href", url);
-  //       link.setAttribute("download", "log.json");
-  //       link.click();
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
-  // Save log in local storage
 
   public saveLogLocalStorage(params: I.Log): void {
     const isSave = params?.save?.isActivated;

@@ -15,6 +15,7 @@ export type Log = {
     isActivated: boolean;
     format: "text" | "json";
   };
+  download?: boolean;
 };
 
 export type Type = "warn" | "error" | "info";
