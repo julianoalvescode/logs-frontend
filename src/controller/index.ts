@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { format } from "date-fns";
 
 import * as I from "./types";
@@ -17,50 +18,46 @@ class LogsFast implements I.LogsFast {
     switch (params?.type) {
       case "warn":
         console.log(
-          "-------------------------",
+          "/-------------------------/",
           "\n",
-          `%c${this.generateLog(params?.type)}`,
-          "background: #f7b500; color: #fff; font-weight: bold;",
+          chalk.black.bgHex("#ef9a4f").bold(this.generateLog(params?.type)),
           "\n",
           params?.message,
           "\n",
-          "-------------------------"
+          "<------------------------->"
         );
         break;
       case "error":
         console.log(
-          "-------------------------",
+          "/-------------------------/",
           "\n",
-          `%c${this.generateLog(params?.type)}`,
-          "background: #f50000; color: #fff; font-weight: bold;",
+          chalk.black.bgHex("#f14a4a").bold(this.generateLog(params?.type)),
           "\n",
           params?.message,
           "\n",
-          "-------------------------"
+          "<------------------------->"
         );
         break;
       case "info":
         console.log(
-          "-------------------------",
+          "/-------------------------/",
           "\n",
-          `%c${this.generateLog(params?.type)}`,
-          "background: #00b0ff; color: #fff; font-weight: bold;",
+          chalk.white.bgHex("#2f8fe9").bold(this.generateLog(params?.type)),
           "\n",
           params?.message,
           "\n",
-          "-------------------------"
+          "<------------------------->"
         );
         break;
       default:
         console.log(
-          "-------------------------",
+          "/-------------------------/",
           "\n",
-          `%c${this.generateLog(params?.type)}`,
-          "background: #00b0ff; color: #fff; font-weight: bold;",
+          chalk.black.bgBlue.bold(this.generateLog(params?.type)),
           "\n",
           params?.message,
           "\n",
-          "-------------------------"
+          "<------------------------->"
         );
         break;
     }

@@ -3,9 +3,9 @@ export interface LogsFast {
 }
 
 export enum TypeMessage {
-  "warn" = "WARNING",
-  "error" = "ERROR",
-  "info" = "INFO",
+  "warn" = "⚠️ WARNING",
+  "error" = "🔥 ERROR",
+  "info" = "✅ INFO",
 }
 
 export type Log = {
