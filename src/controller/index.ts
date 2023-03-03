@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import { format } from "date-fns";
 
 import * as I from "./types";
@@ -20,7 +19,7 @@ class LogsFast implements I.LogsFast {
         console.log(
           "/-------------------------/",
           "\n",
-          chalk.black.bgHex("#ef9a4f").bold(this.generateLog(params?.type)),
+          this.generateLog(params?.type),
           "\n",
           params?.message,
           "\n",
@@ -31,7 +30,7 @@ class LogsFast implements I.LogsFast {
         console.log(
           "/-------------------------/",
           "\n",
-          chalk.black.bgHex("#f14a4a").bold(this.generateLog(params?.type)),
+          this.generateLog(params?.type),
           "\n",
           params?.message,
           "\n",
@@ -42,7 +41,7 @@ class LogsFast implements I.LogsFast {
         console.log(
           "/-------------------------/",
           "\n",
-          chalk.white.bgHex("#2f8fe9").bold(this.generateLog(params?.type)),
+          this.generateLog(params?.type),
           "\n",
           params?.message,
           "\n",
@@ -53,7 +52,7 @@ class LogsFast implements I.LogsFast {
         console.log(
           "/-------------------------/",
           "\n",
-          chalk.black.bgBlue.bold(this.generateLog(params?.type)),
+          this.generateLog(params?.type),
           "\n",
           params?.message,
           "\n",
