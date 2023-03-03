@@ -1,6 +1,6 @@
 {
   "name": "logs-frontend",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fast tool for logs in frontend",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

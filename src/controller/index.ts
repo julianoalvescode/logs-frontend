@@ -18,38 +18,46 @@ class LogsFast implements I.LogsFast {
     switch (params?.type) {
       case "warn":
         console.log(
-          chalk.white.bgYellow.bold(
-            this.generateLog(params?.type),
-            "\n",
-            params?.message
-          )
+          "-------------------------",
+          "\n",
+          chalk.black.bgYellow.bold(this.generateLog(params?.type)),
+          "\n",
+          params?.message,
+          "\n",
+          "-------------------------"
         );
         break;
       case "error":
         console.log(
-          chalk.white.bgRed.bold(
-            this.generateLog(params?.type),
-            "\n",
-            params?.message
-          )
+          "-------------------------",
+          "\n",
+          chalk.black.bgRed.bold(this.generateLog(params?.type)),
+          "\n",
+          params?.message,
+          "\n",
+          "-------------------------"
         );
         break;
       case "info":
         console.log(
-          chalk.white.bgBlue.bold(
-            this.generateLog(params?.type),
-            "\n",
-            params?.message
-          )
+          "-------------------------",
+          "\n",
+          chalk.black.bgBlue.bold(this.generateLog(params?.type)),
+          "\n",
+          params?.message,
+          "\n",
+          "-------------------------"
         );
         break;
       default:
         console.log(
-          chalk.white.bgBlue.bold(
-            this.generateLog(params?.type),
-            "\n",
-            params?.message
-          )
+          "-------------------------",
+          "\n",
+          chalk.black.bgBlue.bold(this.generateLog(params?.type)),
+          "\n",
+          params?.message,
+          "\n",
+          "-------------------------"
         );
         break;
     }
