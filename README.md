@@ -44,7 +44,7 @@ Allows downloading the logs saved in `localStorage` in different formats.
 ## Usage
 
 ```javascript
-import { logsFast } from "path_to_logsFast_module";
+import { logsFast } from "logs-frontend";
 
 // Log an informational message to the console
 logsFast.log({
